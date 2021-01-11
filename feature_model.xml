@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<featureModel>
+	<properties>
+		<graphics key="legendposition" value="30,45"/>
+		<graphics key="legendautolayout" value="true"/>
+		<graphics key="showshortnames" value="false"/>
+		<graphics key="layout" value="horizontal"/>
+		<graphics key="showcollapsedconstraints" value="true"/>
+		<graphics key="legendhidden" value="false"/>
+		<graphics key="layoutalgorithm" value="1"/>
+	</properties>
+	<struct>
+		<and abstract="true" mandatory="true" name="IoTAssistant">
+			<graphics key="collapsed" value="false"/>
+			<or abstract="true" mandatory="true" name="Language">
+				<graphics key="collapsed" value="false"/>
+				<feature name="PT"/>
+				<feature name="EN"/>
+			</or>
+			<and abstract="true" name="Disabilities">
+				<graphics key="collapsed" value="false"/>
+				<feature abstract="true" name="Auditory"/>
+				<feature abstract="true" name="Visual"/>
+			</and>
+			<and abstract="true" mandatory="true" name="Devices">
+				<graphics key="collapsed" value="false"/>
+				<alt name="Sensors">
+					<graphics key="collapsed" value="false"/>
+					<feature name="Movement"/>
+					<feature name="Pulse"/>
+				</alt>
+				<alt abstract="true" name="Wearables">
+					<graphics key="collapsed" value="false"/>
+					<feature name="Button"/>
+					<feature name="Light"/>
+				</alt>
+				<feature name="Lamps"/>
+			</and>
+			<feature mandatory="true" name="Contacts"/>
+			<and abstract="true" mandatory="true" name="Input">
+				<graphics key="collapsed" value="false"/>
+				<feature mandatory="true" name="Mouse"/>
+				<feature mandatory="true" name="Keyboard"/>
+				<feature name="Microphone"/>
+			</and>
+			<and abstract="true" mandatory="true" name="Output">
+				<graphics key="collapsed" value="false"/>
+				<feature mandatory="true" name="Screen"/>
+				<feature name="Speakers"/>
+			</and>
+			<and mandatory="true" name="Alerts">
+				<graphics key="collapsed" value="false"/>
+				<feature mandatory="true" name="SMS"/>
+			</and>
+		</and>
+	</struct>
+	<constraints>
+		<rule>
+			<imp>
+				<var>Visual</var>
+				<var>Speakers</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>Auditory</var>
+				<not>
+					<var>Speakers</var>
+				</not>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>Auditory</var>
+				<disj>
+					<var>Lamps</var>
+					<var>Light</var>
+				</disj>
+			</imp>
+		</rule>
+	</constraints>
+</featureModel>
