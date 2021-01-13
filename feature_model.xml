@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <featureModel>
 	<properties>
-		<graphics key="legendposition" value="30,45"/>
 		<graphics key="legendautolayout" value="true"/>
 		<graphics key="showshortnames" value="false"/>
 		<graphics key="layout" value="horizontal"/>
@@ -22,21 +21,17 @@
 				<feature abstract="true" name="Auditory"/>
 				<feature abstract="true" name="Visual"/>
 			</and>
-			<and abstract="true" mandatory="true" name="Devices">
+			<or abstract="true" mandatory="true" name="Devices">
 				<graphics key="collapsed" value="false"/>
-				<alt name="Sensors">
-					<graphics key="collapsed" value="false"/>
-					<feature name="Movement"/>
-					<feature name="Pulse"/>
-				</alt>
-				<alt abstract="true" name="Wearables">
-					<graphics key="collapsed" value="false"/>
-					<feature name="Button"/>
-					<feature name="Light"/>
-				</alt>
-				<feature name="Lamps"/>
+				<feature name="Smart Watch"/>
+				<feature name="Movement Sensor"/>
+				<feature name="Panic Vest"/>
+				<feature name="Portable Alarm"/>
+			</or>
+			<and mandatory="true" name="Contacts">
+				<feature name="Emergency Contact"/>
+				<feature name="Management"/>
 			</and>
-			<feature mandatory="true" name="Contacts"/>
 			<and abstract="true" mandatory="true" name="Input">
 				<graphics key="collapsed" value="false"/>
 				<feature mandatory="true" name="Mouse"/>
@@ -47,10 +42,15 @@
 				<graphics key="collapsed" value="false"/>
 				<feature mandatory="true" name="Screen"/>
 				<feature name="Speakers"/>
+				<feature name="Light"/>
 			</and>
-			<and mandatory="true" name="Alerts">
+			<and name="Alerts">
 				<graphics key="collapsed" value="false"/>
 				<feature mandatory="true" name="SMS"/>
+			</and>
+			<and name="Patterns">
+				<feature name="Movement Detection"/>
+				<feature name="Reminders"/>
 			</and>
 		</and>
 	</struct>
@@ -71,11 +71,20 @@
 		</rule>
 		<rule>
 			<imp>
-				<var>Auditory</var>
-				<disj>
-					<var>Lamps</var>
-					<var>Light</var>
-				</disj>
+				<var>Movement Sensor</var>
+				<var>Movement Detection</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>Panic Vest</var>
+				<var>Alerts</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>Movement Sensor</var>
+				<var>Alerts</var>
 			</imp>
 		</rule>
 	</constraints>
