@@ -30,7 +30,7 @@
 			</or>
 			<and mandatory="true" name="Contacts">
 				<feature name="Emergency Contact"/>
-				<feature name="Management"/>
+				<feature mandatory="true" name="Management"/>
 			</and>
 			<and abstract="true" mandatory="true" name="Input">
 				<graphics key="collapsed" value="false"/>
@@ -48,9 +48,9 @@
 				<graphics key="collapsed" value="false"/>
 				<feature mandatory="true" name="SMS"/>
 			</and>
-			<and name="Patterns">
+			<and mandatory="true" name="Patterns">
 				<feature name="Movement Detection"/>
-				<feature name="Reminders"/>
+				<feature mandatory="true" name="Reminders"/>
 			</and>
 		</and>
 	</struct>
