@@ -2,12 +2,9 @@ package core;
 
 import java.util.HashMap;
 
-import com.bezirk.middleware.messages.Event;
-
-public class Contacts extends Event{
+public class Contacts{
 	
 	private static HashMap<String, Integer> contacts;
-	private boolean isEmergencyContact;
 	
 	private Contacts() {
 		contacts = new HashMap<>();
@@ -41,13 +38,6 @@ public class Contacts extends Event{
 		return contacts.get(name);
 	}
 	
-	public void setEmergencyContact(boolean bool) {
-		this.isEmergencyContact = bool;
-	}
-
-	public boolean isEmergencyContact() {
-		return isEmergencyContact;
-	}
 	
 	@Override
 	public String toString() {
@@ -59,6 +49,5 @@ public class Contacts extends Event{
 		
 		return sb.toString();
 	}
-
 
 }

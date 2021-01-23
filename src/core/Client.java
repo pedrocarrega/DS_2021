@@ -1,14 +1,10 @@
 package core;
 
-import java.util.HashMap;
-
 import com.bezirk.middleware.Bezirk;
 import com.bezirk.middleware.addressing.ZirkEndPoint;
 import com.bezirk.middleware.java.proxy.BezirkMiddleware;
 import com.bezirk.middleware.messages.Event;
 import com.bezirk.middleware.messages.EventSet;
-
-import examples.AirQualityUpdateEvent;
 
 public class Client {
 	
@@ -16,7 +12,17 @@ public class Client {
 		
 		//System.out.println("Hello World");
 		
-		HashMap<String, Contacts> contacts;
+		inicializeBezirk();
+		inicializeMenu();
+		
+	}
+
+	private static void inicializeMenu() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void inicializeBezirk() {
 		
 		BezirkMiddleware.initialize();
 		final Bezirk bezirk = BezirkMiddleware.registerZirk("Device Client Zirk");
@@ -29,12 +35,6 @@ public class Client {
 			@Override
 			public void receiveEvent(Event event, ZirkEndPoint sender) {
 				// TODO should be treated by aspects
-				if (event instanceof Contacts) {
-					Contacts contact = (Contacts) event;
-					if (contact.isEmergencyContact()) {
-						//TODO Does it go here?
-					}
-				}
 			}
 		});
 		bezirk.subscribe(events);
