@@ -1,24 +1,41 @@
 package core;
 
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.function.Function;
+
 import com.bezirk.middleware.Bezirk;
 import com.bezirk.middleware.addressing.ZirkEndPoint;
 import com.bezirk.middleware.java.proxy.BezirkMiddleware;
 import com.bezirk.middleware.messages.Event;
 import com.bezirk.middleware.messages.EventSet;
+import com.sun.imageio.plugins.common.I18N;
+
+import i18n.Messages;
 
 public class Client {
+	
+	private static HashMap<String, Function> menu;
+	private static Contacts contacts;
+	private static Scanner sc;
 	
 	public static void main(String[] args) {
 		
 		//System.out.println("Hello World");
 		
-		inicializeBezirk();
+		contacts = new Contacts();
 		inicializeMenu();
+		inicializeBezirk();
+		
 		
 	}
 
 	private static void inicializeMenu() {
 		// TODO Auto-generated method stub
+		menu = new HashMap<>();
+		sc = new Scanner(System.in);
+		menu.put(I18N.getString(Messages.ADD_CONTACT), (sc) -> contacts.createContact((Scanner) sc));
+		menu.put(I18N.getString(Messages.CHANGE_CONTACT), (sc) -> contacts.createContact((Scanner) sc));
 		
 	}
 
