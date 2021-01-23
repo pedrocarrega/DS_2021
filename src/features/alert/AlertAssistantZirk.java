@@ -6,6 +6,7 @@ import com.bezirk.middleware.java.proxy.BezirkMiddleware;
 import com.bezirk.middleware.messages.Event;
 import com.bezirk.middleware.messages.EventSet;
 
+
 public class AlertAssistantZirk{
     public AlertAssistantZirk() {
         BezirkMiddleware.initialize();
