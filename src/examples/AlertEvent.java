@@ -1,4 +1,4 @@
-package core;
+package examples;
 
 import com.bezirk.middleware.messages.Event;
 
@@ -17,6 +17,6 @@ public class AlertEvent extends Event {
 	}
 	
 	public String toString() {
-        return String.format("Alerta: ", alert);
+        return String.format("Alerta", alert);
     }
 }

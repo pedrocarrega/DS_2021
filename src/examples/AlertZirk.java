@@ -1,4 +1,4 @@
-package core;
+package examples;
 
 import static i18n.Messages.DEVICE_RUNNING;
 import static i18n.Messages.MEDICINE;
@@ -47,7 +47,7 @@ public class AlertZirk {
         System.err.println("This product has an Alert");
         
         System.err.println(I18N.getString(DEVICE_RUNNING, "Alert"));
-        //alertZirk.sendAlertUpdate();
+        alertZirk.sendAlertUpdate();
         alertZirk.sendPeriodiclyAlertUpdate();
     }
 }
