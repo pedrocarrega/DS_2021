@@ -5,7 +5,6 @@ public class Contact {
 	private String firstName;
 	private String lastName;
 	private int phoneNumber;
-	private String email;
 	
 	public Contact(String firstName, String lastName, int phoneNumber) {
 		this.firstName = firstName;
@@ -13,6 +12,13 @@ public class Contact {
 		this.phoneNumber = phoneNumber;
 	}
 	
+	public Contact(String name, int phoneNumber) {
+		
+		String[] split = name.split(" ");
+		this.firstName = split[0];
+		this.lastName = split[1];
+		this.phoneNumber = phoneNumber;
+	}
 	
 	public String getFirstName() {
 		return this.firstName;
@@ -36,18 +42,6 @@ public class Contact {
 	
 	public void setPhoneNumber(int newNumber) {
 		this.phoneNumber = newNumber;
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
-	}
-	
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
 	}
 
 }
