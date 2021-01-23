@@ -1,12 +1,13 @@
 package core;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
-public class Contacts {
+import com.bezirk.middleware.messages.Event;
+
+public class Contacts extends Event{
 	
 	private static HashMap<String, Integer> contacts;
+	private boolean isEmergencyContact;
 	
 	private Contacts() {
 		contacts = new HashMap<>();
@@ -40,6 +41,14 @@ public class Contacts {
 		return contacts.get(name);
 	}
 	
+	public void setEmergencyContact(boolean bool) {
+		this.isEmergencyContact = bool;
+	}
+
+	public boolean isEmergencyContact() {
+		return isEmergencyContact;
+	}
+	
 	@Override
 	public String toString() {
 		
@@ -50,4 +59,6 @@ public class Contacts {
 		
 		return sb.toString();
 	}
+
+
 }
