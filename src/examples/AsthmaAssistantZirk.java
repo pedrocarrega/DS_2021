@@ -41,21 +41,6 @@ public class AsthmaAssistantZirk{
             }
         });
         bezirk.subscribe(airQualityEvents);
-        
-        final EventSet alertEvents = new EventSet(AlertEvent.class);
-
-        alertEvents.setEventReceiver(new EventSet.EventReceiver() {
-            @Override
-            public void receiveEvent(Event event, ZirkEndPoint sender) {
-                //Check if this event is of interest
-                if (event instanceof AlertEvent) {
-                    final AlertEvent alertUpdate = (AlertEvent) event;
-                    System.err.println("\nReceived alert update: " + alertUpdate.toString());
-                    System.out.println(alertUpdate.getAlert());
-                }
-            }
-        });
-        bezirk.subscribe(alertEvents);
     }
 
     public static void main(String args[]) {
