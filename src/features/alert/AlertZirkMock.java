@@ -1,4 +1,4 @@
-package examples;
+package features.alert;
 
 import static i18n.Messages.DEVICE_RUNNING;
 import static i18n.Messages.MEDICINE;
@@ -12,11 +12,11 @@ import com.bezirk.middleware.java.proxy.BezirkMiddleware;
 
 import i18n.I18N;
 
-public class AlertZirk {
+public class AlertZirkMock {
 	
 	private Bezirk bezirk;
 
-    public AlertZirk() {
+    public AlertZirkMock() {
         BezirkMiddleware.initialize();
         bezirk = BezirkMiddleware.registerZirk("Alert Zirk");
         System.err.println("Got Bezirk instance");
@@ -43,7 +43,7 @@ public class AlertZirk {
     }
    
 	public static void main(String args[]){
-        AlertZirk alertZirk = new AlertZirk();
+        AlertZirkMock alertZirk = new AlertZirkMock();
         System.err.println("This product has an Alert");
         
         System.err.println(I18N.getString(DEVICE_RUNNING, "Alert"));

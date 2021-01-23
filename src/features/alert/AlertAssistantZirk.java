@@ -1,4 +1,4 @@
-package examples;
+package features.alert;
 
 import com.bezirk.middleware.Bezirk;
 import com.bezirk.middleware.addressing.ZirkEndPoint;

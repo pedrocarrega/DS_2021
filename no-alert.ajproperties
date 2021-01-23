@@ -1,0 +1,5 @@
+src.includes = src/
+src.excludes = src/aspects/Alert.aj,\
+			   src/features/alert/AlertAssistantZirk.java,\
+			   src/features/alert/AlertEvent.java,\
+			   src/features/alert/AlertZirkMock.java

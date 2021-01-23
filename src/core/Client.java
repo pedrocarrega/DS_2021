@@ -19,7 +19,7 @@ public class Client {
 		final Bezirk bezirk = BezirkMiddleware.registerZirk("Device Client Zirk");
 		
 		//TODO how could we do this?
-		final EventSet events = new EventSet(...);
+		final EventSet events = new EventSet();
 		
 		events.setEventReceiver(new EventSet.EventReceiver() {
 			

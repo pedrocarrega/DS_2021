@@ -1,6 +1,6 @@
 package aspects;
 
-import examples.AlertAssistantZirk;
+import features.alert.AlertAssistantZirk;
 
 public aspect Alert {
 	//TODO Mudar para o main da aplicação

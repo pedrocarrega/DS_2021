@@ -1,4 +1,4 @@
-package examples;
+package features.alert;
 
 import com.bezirk.middleware.messages.Event;
 
