@@ -6,7 +6,18 @@ import java.util.Set;
 
 public class Contacts {
 	
-	private HashMap<String, Integer> contacts = new HashMap<>();
+	private static HashMap<String, Integer> contacts;
+	
+	private Contacts() {
+		contacts = new HashMap<>();
+	}
+	
+	public static HashMap<String, Integer> getInstance() {
+		if(contacts == null) 
+			new Contacts();
+		
+		return contacts;
+	}
 	
 	public String createContact(String name, int phoneNumber) {
 		if(!contacts.containsKey(name) && !contacts.containsValue(phoneNumber)) {
