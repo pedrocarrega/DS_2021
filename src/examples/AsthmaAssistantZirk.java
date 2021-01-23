@@ -1,14 +1,15 @@
 package examples;
-import i18n.I18N;
+import static i18n.Messages.DUST_MSG;
 import static i18n.Messages.HUMIDITY_MSG;
 import static i18n.Messages.POLLEN_MSG;
-import static i18n.Messages.DUST_MSG;
 
 import com.bezirk.middleware.Bezirk;
 import com.bezirk.middleware.addressing.ZirkEndPoint;
 import com.bezirk.middleware.java.proxy.BezirkMiddleware;
 import com.bezirk.middleware.messages.Event;
 import com.bezirk.middleware.messages.EventSet;
+
+import i18n.I18N;
 
 public class AsthmaAssistantZirk{
     public AsthmaAssistantZirk() {

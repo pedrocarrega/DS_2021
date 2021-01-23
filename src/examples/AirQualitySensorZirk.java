@@ -1,13 +1,14 @@
 package examples;
 
+import static i18n.Messages.DEVICE_RUNNING;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
-import i18n.I18N;
-import static i18n.Messages.DEVICE_RUNNING;
-
 import com.bezirk.middleware.Bezirk;
 import com.bezirk.middleware.java.proxy.BezirkMiddleware;
+
+import i18n.I18N;
 
 public class AirQualitySensorZirk{
     private Bezirk bezirk;
