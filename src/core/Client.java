@@ -11,6 +11,10 @@ import com.bezirk.middleware.java.proxy.BezirkMiddleware;
 import com.bezirk.middleware.messages.Event;
 import com.bezirk.middleware.messages.EventSet;
 
+import events.AlertEvent;
+import events.ButtonEvent;
+import events.LightEvent;
+import examples.AirQualityUpdateEvent;
 import i18n.I18N;
 import i18n.Messages;
 
@@ -19,6 +23,7 @@ public class Client {
 	private static HashMap<String, Consumer<String>> menu;
 	private static Contacts contacts;
 	private static Scanner sc;
+	private static Bezirk bezirk;
 	
 	public static void main(String[] args) {
 		
@@ -44,9 +49,8 @@ public class Client {
 		} while (true);	
 	}
 
-	private static void inicializeMenu() {
-		//TODO
-		
+	public static void inicializeMenu() {
+				
 		menu = new HashMap<>();
 		sc = new Scanner(System.in);
 		menu.put(I18N.getString(Messages.ADD_CONTACT), (i) -> contacts.createContact(sc));
@@ -58,13 +62,10 @@ public class Client {
 	private static void inicializeBezirk() {
 		
 		BezirkMiddleware.initialize();
-		final Bezirk bezirk = BezirkMiddleware.registerZirk("Device Client Zirk");
+		bezirk = BezirkMiddleware.registerZirk("Device Client Zirk");
 		
 		//TODO how could we do this?
-		List<Class<? extends Event>> listenEvents = new ArrayList<>();
-		
-		@SuppressWarnings("unchecked")
-		final EventSet events = new EventSet((Class<? extends Event>[]) listenEvents.toArray());
+		final EventSet events = new EventSet(AlertEvent.class, ButtonEvent.class, LightEvent.class);
 		
 		events.setEventReceiver(new EventSet.EventReceiver() {
 			
@@ -87,5 +88,19 @@ public class Client {
 
 		return sb.toString();
 	}
+	
+	public static void sendButtonEvent() {
+        final ButtonEvent buttonEvent = new ButtonEvent(true);
+        //sends the event
+        bezirk.sendEvent(buttonEvent);
+        System.err.println("Button event sent.");
+    }
+	
+	public static void sendLightEvent() {
+        final LightEvent lightEvent = new LightEvent("ON");
+        //sends the event
+        bezirk.sendEvent(lightEvent);
+        System.err.println("Light event sent.");
+    }
 
 }
