@@ -44,9 +44,8 @@ public class Client {
 		} while (true);	
 	}
 
-	private static void inicializeMenu() {
-		//TODO
-		
+	public static void inicializeMenu() {
+				
 		menu = new HashMap<>();
 		sc = new Scanner(System.in);
 		menu.put(I18N.getString(Messages.ADD_CONTACT), (i) -> contacts.createContact(sc));
