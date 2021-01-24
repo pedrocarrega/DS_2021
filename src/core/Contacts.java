@@ -14,6 +14,7 @@ public class Contacts {
 		contacts = new HashMap<>();
 	}
 	
+	
 	public String createContact(Scanner sc) {
 		
 		System.out.println(I18N.getString(Messages.INSERT_NAME));
@@ -29,12 +30,26 @@ public class Contacts {
 		}
 	}
 	
+	public String editContact(Scanner sc) {
+		
+		System.out.println(I18N.getString(Messages.INSERT_NAME));
+		String name = sc.nextLine();
+		
+		if(contacts.remove(name) == null) {
+			return I18N.getString(Messages.CONTACT_DOESNT_EXIST);
+		}
+		return createContact(sc);
+	}
 	
-	public String removeContact(String name) {
+	public String removeContact(Scanner sc) {
+		
+		System.out.println(I18N.getString(Messages.INSERT_NAME));
+		String name = sc.nextLine();
+		
 		if(contacts.remove(name) == null)
-			return "";//I18N.getString(Messages.REMOVE_CONTACT_FAILED);
+			return I18N.getString(Messages.REMOVE_CONTACT_FAILED);
 		else
-			return "";//I18N.getString(Messages.REMOVE_CONTACT_SUCCESS);
+			return I18N.getString(Messages.REMOVE_CONTACT_SUCCESS);
 	}
 	
 	public int getNumber(String name) {

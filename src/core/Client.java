@@ -2,20 +2,19 @@ package core;
 
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.function.Function;
-
+import java.util.function.Consumer;
 import com.bezirk.middleware.Bezirk;
 import com.bezirk.middleware.addressing.ZirkEndPoint;
 import com.bezirk.middleware.java.proxy.BezirkMiddleware;
 import com.bezirk.middleware.messages.Event;
 import com.bezirk.middleware.messages.EventSet;
-import com.sun.imageio.plugins.common.I18N;
 
+import i18n.I18N;
 import i18n.Messages;
 
 public class Client {
 	
-	private static HashMap<String, Function> menu;
+	private static HashMap<String, Consumer<String>> menu;
 	private static Contacts contacts;
 	private static Scanner sc;
 	
@@ -31,11 +30,13 @@ public class Client {
 	}
 
 	private static void inicializeMenu() {
-		// TODO Auto-generated method stub
+		//TODO
+		
 		menu = new HashMap<>();
 		sc = new Scanner(System.in);
-		menu.put(I18N.getString(Messages.ADD_CONTACT), (sc) -> contacts.createContact((Scanner) sc));
-		menu.put(I18N.getString(Messages.CHANGE_CONTACT), (sc) -> contacts.createContact((Scanner) sc));
+		menu.put(I18N.getString(Messages.ADD_CONTACT), (i) -> contacts.createContact(sc));
+		menu.put(I18N.getString(Messages.EDIT_CONTACT), (i) -> contacts.editContact(sc));
+		menu.put(I18N.getString(Messages.REMOVE_CONTACT), (i) -> contacts.removeContact(sc));
 		
 	}
 
