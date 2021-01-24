@@ -20,10 +20,9 @@ public aspect Movement {
 	private static String Client.movePatternPlace;
 	
 	
-	after(HashMap<String, Consumer<String>> menu): execution(* *.initializeMenu()) && args(menu){
+	after(HashMap<String, Consumer<String>> menu): execution(* Client.initializeMenu()) && args(menu){
 
 		menu.put(I18N.getString(Messages.MOVEMENT_OPTION), (i) -> createPattern());
-		
 	}
 	
 	private String createPattern() {
