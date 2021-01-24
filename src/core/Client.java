@@ -11,6 +11,7 @@ import com.bezirk.middleware.java.proxy.BezirkMiddleware;
 import com.bezirk.middleware.messages.Event;
 import com.bezirk.middleware.messages.EventSet;
 
+import events.AlertEvent;
 import i18n.I18N;
 import i18n.Messages;
 
@@ -65,6 +66,7 @@ public class Client {
 
 		//TODO how could we do this?
 		List<Class<? extends Event>> listenEvents = new ArrayList<>();
+		listenEvents.add(AlertEvent.class);
 
 		@SuppressWarnings("unchecked")
 		final EventSet events = new EventSet((Class<? extends Event>[]) listenEvents.toArray());
@@ -74,6 +76,15 @@ public class Client {
 			@Override
 			public void receiveEvent(Event event, ZirkEndPoint sender) {
 				//TODO should be treated by aspects, unless its core event
+				if (event instanceof AlertEvent) {
+					AlertEvent temp = (AlertEvent) event;
+					if(temp.getContact() != 0) {
+						//assumindo que este não é o numero para o qual nao foi fowarded aqui fazia foward
+						//sendAlertToNumber(temp);
+					}
+					System.out.println(temp.toString());
+					
+				}
 			}
 		});
 		bezirk.subscribe(events);
