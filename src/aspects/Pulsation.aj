@@ -16,7 +16,7 @@ public aspect Pulsation {
 	
 	after(HashMap<String, Consumer<String>> menu, Bezirk bezirk): execution(* Device.initializeMenu()) && args(menu, bezirk){
 
-		menu.put(I18N.getString(Messages.BUTTON_OPTION), (i) -> sendHeartRate(bezirk));
+		menu.put(I18N.getString(Messages.HEART_RATE_OPTION), (i) -> sendHeartRate(bezirk));
 	}
 	
 	
