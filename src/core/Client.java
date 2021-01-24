@@ -23,7 +23,6 @@ public class Client {
 
 	public static void main(String[] args) {
 		
-		
 		reminders = new ReminderManager();
 		contacts = new Contacts();
 		inicializeMenu();
@@ -92,7 +91,7 @@ public class Client {
 		return sb.toString();
 	}
 
-	
+	/*
 	public static void sendButtonEvent() {
         final ButtonEvent buttonEvent = new ButtonEvent(true);
         //sends the event
@@ -106,5 +105,5 @@ public class Client {
         bezirk.sendEvent(lightEvent);
         System.err.println("Light event sent.");
     }
-
+*/
 }
