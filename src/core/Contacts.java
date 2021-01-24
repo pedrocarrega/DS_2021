@@ -1,43 +1,60 @@
 package core;
 
 import java.util.HashMap;
+import java.util.Scanner;
 
-public class Contacts{
+import i18n.I18N;
+import i18n.Messages;
+
+public class Contacts {
 	
 	private static HashMap<String, Integer> contacts;
 	
-	private Contacts() {
+	public Contacts() {
 		contacts = new HashMap<>();
 	}
 	
-	public static HashMap<String, Integer> getInstance() {
-		if(contacts == null) 
-			new Contacts();
-		
-		return contacts;
-	}
 	
-	public String createContact(String name, int phoneNumber) {
+	public String createContact(Scanner sc) {
+		
+		System.out.println(I18N.getString(Messages.INSERT_NAME));
+		String name = sc.nextLine();
+		System.out.println(I18N.getString(Messages.INSERT_NUMBER));
+		int phoneNumber = Integer.parseInt(sc.nextLine());
+		
 		if(!contacts.containsKey(name) && !contacts.containsValue(phoneNumber)) {
 			contacts.put(name, phoneNumber);
-			return CREATE_CONTACT_SUCCESS;
+			return I18N.getString(Messages.CREATE_CONTACT_SUCCESS);
 		} else {
-			return CREATE_CONTACT_FAILED;
+			return I18N.getString(Messages.CREATE_CONTACT_FAILED);
 		}
 	}
 	
+	public String editContact(Scanner sc) {
+		
+		System.out.println(I18N.getString(Messages.INSERT_NAME));
+		String name = sc.nextLine();
+		
+		if(contacts.remove(name) == null) {
+			return I18N.getString(Messages.CONTACT_DOESNT_EXIST);
+		}
+		return createContact(sc);
+	}
 	
-	public String removeContact(String name) {
+	public String removeContact(Scanner sc) {
+		
+		System.out.println(I18N.getString(Messages.INSERT_NAME));
+		String name = sc.nextLine();
+		
 		if(contacts.remove(name) == null)
-			return REMOVE_CONTACT_FAILED;
+			return I18N.getString(Messages.REMOVE_CONTACT_FAILED);
 		else
-			return REMOVE_CONTACT_SUCCESS;
+			return I18N.getString(Messages.REMOVE_CONTACT_SUCCESS);
 	}
 	
 	public int getNumber(String name) {
 		return contacts.get(name);
 	}
-	
 	
 	@Override
 	public String toString() {
@@ -49,5 +66,4 @@ public class Contacts{
 		
 		return sb.toString();
 	}
-
 }
