@@ -58,13 +58,15 @@ public class Device {
 		listenEvents.add(AlertEvent.class);
 		
 		@SuppressWarnings("unchecked")
-		final EventSet events = new EventSet((Class<? extends Event>[]) listenEvents.toArray());
+		Class<? extends Event>[] array = new Class[listenEvents.size()];
+		listenEvents.toArray(array);
+		
+		final EventSet events = new EventSet(array);
 		
 		events.setEventReceiver(new EventSet.EventReceiver() {
 			
 			@Override
 			public void receiveEvent(Event event, ZirkEndPoint sender) {
-				//TODO should be treated by aspects, unless its core event
 				if (event instanceof AlertEvent) {
 					AlertEvent temp = (AlertEvent) event;
 					if(temp.getContact() != 0) {
@@ -72,7 +74,6 @@ public class Device {
 						//sendAlertToNumber(temp);
 					}
 					System.out.println(temp.toString());
-					
 				}
 			}
 		});

@@ -48,15 +48,13 @@ public class Client {
 	}
 
 	private static void inicializeMenu() {
-		//TODO
-
+		
 		menu = new HashMap<>();
 		sc = new Scanner(System.in);
 		menu.put(I18N.getString(Messages.ADD_CONTACT), (i) -> contacts.createContact(sc));
 		menu.put(I18N.getString(Messages.EDIT_CONTACT), (i) -> contacts.editContact(sc));
 		menu.put(I18N.getString(Messages.REMOVE_CONTACT), (i) -> contacts.removeContact(sc));
 		menu.put(I18N.getString(Messages.ADD_REMINDER), (i) -> reminders.createReminder(sc));
-
 	}
 
 	private static void inicializeBezirk() {
@@ -64,18 +62,19 @@ public class Client {
 		BezirkMiddleware.initialize();
 		final Bezirk bezirk = BezirkMiddleware.registerZirk("Device Client Zirk");
 
-		//TODO how could we do this?
 		List<Class<? extends Event>> listenEvents = new ArrayList<>();
 		listenEvents.add(AlertEvent.class);
 
 		@SuppressWarnings("unchecked")
-		final EventSet events = new EventSet((Class<? extends Event>[]) listenEvents.toArray());
-
+		Class<? extends Event>[] array = new Class[listenEvents.size()];
+		listenEvents.toArray(array);
+		
+		final EventSet events = new EventSet(array);
+		
 		events.setEventReceiver(new EventSet.EventReceiver() {
 
 			@Override
 			public void receiveEvent(Event event, ZirkEndPoint sender) {
-				//TODO should be treated by aspects, unless its core event
 				if (event instanceof AlertEvent) {
 					AlertEvent temp = (AlertEvent) event;
 					if(temp.getContact() != 0) {
@@ -83,7 +82,6 @@ public class Client {
 						//sendAlertToNumber(temp);
 					}
 					System.out.println(temp.toString());
-					
 				}
 			}
 		});
