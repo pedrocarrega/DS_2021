@@ -1,6 +1,8 @@
 package core;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 import java.util.function.Consumer;
 import com.bezirk.middleware.Bezirk;
@@ -20,13 +22,26 @@ public class Client {
 	
 	public static void main(String[] args) {
 		
-		//System.out.println("Hello World");
-		
 		contacts = new Contacts();
 		inicializeMenu();
 		inicializeBezirk();
+		start();
 		
+	}
+
+	private static void start() {
 		
+		do {
+			System.out.println(printMenu());
+			int input = Integer.parseInt(sc.nextLine());
+			int x = 1;
+			for(Consumer<String> f : menu.values()) {
+				if(input == x++) {
+					f.accept("");
+					break;
+				}
+			}
+		} while (true);	
 	}
 
 	private static void inicializeMenu() {
@@ -46,16 +61,31 @@ public class Client {
 		final Bezirk bezirk = BezirkMiddleware.registerZirk("Device Client Zirk");
 		
 		//TODO how could we do this?
-		final EventSet events = new EventSet();
+		List<Class<? extends Event>> listenEvents = new ArrayList<>();
+		
+		@SuppressWarnings("unchecked")
+		final EventSet events = new EventSet((Class<? extends Event>[]) listenEvents.toArray());
 		
 		events.setEventReceiver(new EventSet.EventReceiver() {
 			
 			@Override
 			public void receiveEvent(Event event, ZirkEndPoint sender) {
-				// TODO should be treated by aspects
+				//TODO should be treated by aspects, unless its core event
 			}
 		});
 		bezirk.subscribe(events);
+	}
+
+	private static String printMenu() {
+		
+		StringBuilder sb = new StringBuilder();
+		int x = 1;
+		
+		for (String s : menu.keySet()) {
+			sb.append(x++ + " - " + s);
+		}
+
+		return sb.toString();
 	}
 
 }
