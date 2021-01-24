@@ -1,6 +1,7 @@
 package aspects;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -17,7 +18,7 @@ public aspect Movement {
 	
 	private static LocalTime Client.movePatternStartTime;
 	private static LocalTime Client.movePatternEndTime;
-	private static String Client.movePatternPlace;
+	private static String Client.movePatternLocation;
 	
 	
 	after(HashMap<String, Consumer<String>> menu): execution(* Client.initializeMenu()) && args(menu){
@@ -32,16 +33,20 @@ public aspect Movement {
 		System.out.println(I18N.getString(Messages.END_TIME));
 		String endTime = sc.nextLine();
 		
-		Client.movePatternStartTime = LocalTime.parse(startTime);
+		try {
+			Client.movePatternStartTime = LocalTime.parse(startTime);
 		Client.movePatternEndTime = LocalTime.parse(endTime);
-		
+		} catch(DateTimeParseException e) {
+			sc.close();
+			return I18N.getString(Messages.MOVEMENT_PATTERN_FAILED) + "\n";
+		}
 
-		System.out.println(I18N.getString(Messages.LOCATION));
-		Client.movePatternPlace = sc.nextLine();
+		System.out.println(I18N.getString(Messages.LOCATION) + "\n");
+		Client.movePatternLocation = sc.nextLine();
 		
 		sc.close();
 		
-		return I18N.getString(Messages.MOVEMENT_PATTERN_CREATED);
+		return I18N.getString(Messages.MOVEMENT_PATTERN_CREATED) + "\n";
 	}
 	
 	after(List<Class<? extends Event>> events): initialization(java.util.ArrayList+.new(..)) && args(events){

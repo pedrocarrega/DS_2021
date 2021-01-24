@@ -7,7 +7,6 @@ import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 
 import events.LightEvent;
-import events.PulsationEvent;
 import i18n.I18N;
 import i18n.Messages;
 
