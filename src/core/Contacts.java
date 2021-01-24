@@ -1,6 +1,6 @@
 package core;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 import i18n.I18N;
@@ -8,10 +8,10 @@ import i18n.Messages;
 
 public class Contacts {
 	
-	private static HashMap<String, Integer> contacts;
+	private static LinkedHashMap<String, Integer> contacts;
 	
 	public Contacts() {
-		contacts = new HashMap<>();
+		contacts = new LinkedHashMap<>();
 	}
 	
 	
@@ -62,7 +62,7 @@ public class Contacts {
 		StringBuilder sb = new StringBuilder();
 		
 		for(String s : contacts.keySet())
-			sb.append(s + " - " + contacts.get(s));
+			sb.append(s + " - " + contacts.get(s) + "\n");
 		
 		return sb.toString();
 	}

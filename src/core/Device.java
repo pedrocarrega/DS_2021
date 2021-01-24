@@ -1,7 +1,7 @@
 package core;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Consumer;
@@ -15,7 +15,7 @@ import events.AlertEvent;
 
 public class Device {
 	
-	private static HashMap<String, Consumer<String>> menu;
+	private static LinkedHashMap<String, Consumer<String>> menu;
 	private static Scanner sc;
 	
 	public static void main(String[] args) {
@@ -44,7 +44,7 @@ public class Device {
 
 	public static void inicializeMenu() {
 				
-		menu = new HashMap<>();
+		menu = new LinkedHashMap<>();
 		sc = new Scanner(System.in);
 		
 	}
@@ -86,7 +86,7 @@ public class Device {
 		int x = 1;
 		
 		for (String s : menu.keySet()) {
-			sb.append(x++ + " - " + s);
+			sb.append(x++ + " - " + s + "\n");
 		}
 
 		return sb.toString();

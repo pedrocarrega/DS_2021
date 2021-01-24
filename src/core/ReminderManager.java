@@ -71,7 +71,7 @@ public class ReminderManager {
 		int x = 1;
 
 		for (String s : reminder.keySet()) {
-			sb.append(x++ + " - " + s);
+			sb.append(x++ + " - " + s + "\n");
 		}
 
 		return sb.toString();

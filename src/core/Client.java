@@ -1,7 +1,7 @@
 package core;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Consumer;
@@ -17,7 +17,7 @@ import i18n.Messages;
 
 public class Client {
 
-	private static HashMap<String, Consumer<String>> menu;
+	private static LinkedHashMap<String, Consumer<String>> menu;
 	private static Contacts contacts;
 	private static Scanner sc;
 	private static ReminderManager reminders;
@@ -49,12 +49,13 @@ public class Client {
 
 	private static void inicializeMenu() {
 		
-		menu = new HashMap<>();
+		menu = new LinkedHashMap<>();
 		sc = new Scanner(System.in);
 		menu.put(I18N.getString(Messages.ADD_CONTACT), (i) -> contacts.createContact(sc));
 		menu.put(I18N.getString(Messages.EDIT_CONTACT), (i) -> contacts.editContact(sc));
 		menu.put(I18N.getString(Messages.REMOVE_CONTACT), (i) -> contacts.removeContact(sc));
 		menu.put(I18N.getString(Messages.ADD_REMINDER), (i) -> reminders.createReminder(sc));
+		menu.put(I18N.getString(Messages.REMOVE_REMINDER), (i) -> reminders.removeReminder(sc));
 	}
 
 	private static void inicializeBezirk() {
@@ -94,7 +95,7 @@ public class Client {
 		int x = 1;
 
 		for (String s : menu.keySet()) {
-			sb.append(x++ + " - " + s);
+			sb.append(x++ + " - " + s + "\n");
 		}
 
 		return sb.toString();
