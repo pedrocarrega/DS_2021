@@ -11,6 +11,7 @@ import com.bezirk.middleware.Bezirk;
 import events.ButtonEvent;
 import i18n.I18N;
 import i18n.Messages;
+import core.Device;
 
 public aspect Button {
 	
