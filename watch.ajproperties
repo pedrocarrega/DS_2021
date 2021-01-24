@@ -3,6 +3,7 @@ src.excludes = src/i18n/pt_PT.aj,\
 			   src/i18n/Messages_pt_PT.properties,\
 			   src/events/MovementEvent.java,\
 			   src/events/LightEvent.java,\
+			   src/events/ButtonEvent.java,\
+			   src/aspects/Button.aj,\
 			   src/aspects/Movement.aj,\
 			   src/aspects/Lights.aj
-			   
