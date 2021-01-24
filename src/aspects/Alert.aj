@@ -1,11 +1,9 @@
 package aspects;
 
-import features.alert.AlertAssistantZirk;
-
 public aspect Alert {
-	//TODO Mudar para o main da aplicação
+	//TODO Mudar para o main da aplicaï¿½ï¿½o
 	before() : execution(* *.main(..)) {
-		new AlertAssistantZirk();
+		//new AlertAssistantZirk();
         System.err.println("This product has an Alert Assistant");
 	}
 }

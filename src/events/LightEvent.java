@@ -1,4 +1,4 @@
-package features.light;
+package events;
 
 import com.bezirk.middleware.messages.Event;
 
@@ -6,20 +6,19 @@ public class LightEvent extends Event {
 
 	private static final long serialVersionUID = 1L;
 
-	private Light light;
+	private String light;
 
-	public Light getLight() {
+	public String getLight() {
 		return light;
 	}
 
-	public void setLight(Light light) {
+	public LightEvent(String light) {
 		this.light = light;
 	}
-
 	
-	public LightEvent(Light light) {
-		super();
-		this.light = light;
+	@Override
+	public String toString() {
+		return light;
 	}
 
 }

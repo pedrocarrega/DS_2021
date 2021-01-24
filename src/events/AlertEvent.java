@@ -1,4 +1,4 @@
-package features.alert;
+package events;
 
 import com.bezirk.middleware.messages.Event;
 
@@ -8,15 +8,15 @@ public class AlertEvent extends Event {
 	
 	public String alert;
 
-	public String getAlert() {
-		return alert;
-	}
-
-	public void setAlert(String alert) {
+	public AlertEvent (String alert) {
 		this.alert = alert;
 	}
 	
+	public String getAlert() {
+		return alert;
+	}
+	
 	public String toString() {
-        return String.format("Alerta", alert);
+        return alert;
     }
 }
