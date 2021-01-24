@@ -5,6 +5,6 @@ import i18n.Messages;
 public aspect Lights {
 	
 	after() : call(void java.io.PrintStream.println(..)){
-		System.out.print(I18N.getString(Messages.LIGHT) +"\n");
+		System.out.println(I18N.getString(Messages.LIGHT) +"\n");
 	}
 }
