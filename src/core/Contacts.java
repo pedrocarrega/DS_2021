@@ -56,6 +56,10 @@ public class Contacts {
 		return contacts.get(name);
 	}
 	
+	public boolean containsContact(String name) {
+		return contacts.containsKey(name);
+	}
+	
 	@Override
 	public String toString() {
 		
@@ -65,5 +69,19 @@ public class Contacts {
 			sb.append(s + " - " + contacts.get(s) + "\n");
 		
 		return sb.toString();
+	}
+
+
+	public boolean containsContact(int phoneNumber) {
+		for(int n : contacts.values()) {
+			if(n == phoneNumber)
+				return true;
+		}
+		return false;
+	}
+
+
+	public void addContacts(String name, int phoneNumber) {
+		contacts.put(name, phoneNumber);		
 	}
 }
