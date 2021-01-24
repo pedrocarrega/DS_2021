@@ -29,6 +29,7 @@ public class Device {
 
 	private static void start() {
 		
+		sc = new Scanner(System.in);
 		do {
 			System.out.println(printMenu());
 			int input = Integer.parseInt(sc.nextLine());
@@ -45,8 +46,6 @@ public class Device {
 	public static void inicializeMenu() {
 				
 		menu = new LinkedHashMap<>();
-		sc = new Scanner(System.in);
-		
 	}
 
 	private static void inicializeBezirk() {

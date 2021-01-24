@@ -14,6 +14,5 @@ public aspect Lights {
 		voice.allocate();
 		System.out.print(I18N.getString(Messages.LIGHT) + "\n");
 		voice.speak(words);
-		
 	}
 }

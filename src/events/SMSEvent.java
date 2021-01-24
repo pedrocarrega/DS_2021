@@ -17,7 +17,6 @@ public class SMSEvent extends Event {
 	}
 
 	public SMSEvent(String msg) {
-		super();
 		this.msg = msg;
 	}
 }
