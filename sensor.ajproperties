@@ -1,5 +1,10 @@
 src.includes = src/
-src.excludes = src/aspects/Alert.aj,\
-			   src/features/alert/AlertAssistantZirk.java,\
-			   src/features/alert/AlertEvent.java,\
-			   src/features/alert/AlertZirkMock.java
+src.excludes = src/i18n/en_US.aj,\
+			   src/i18n/Messages_en_US.properties,\
+			   src/aspects/Lights.aj,\
+			   src/aspects/Button.aj,\
+			   src/aspects/Pulsation.aj,\
+			   src/events/ButtonEvent.java,\
+			   src/events/LightEvent.java,\
+			   src/events/PulsationEvent.java
+			   
