@@ -1,8 +1,9 @@
-package aspects;
+          package aspects;
 import java.util.List;
 
 import com.bezirk.middleware.Bezirk;
 import com.bezirk.middleware.messages.Event;
+import com.bezirk.middleware.messages.EventSet.EventReceiver;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 
@@ -26,7 +27,7 @@ public aspect Lights {
 		events.add(LightEvent.class);
 	}
 	
-	after(Event event) : execution(void *.receiveEvent(..)) && target(event) {
+	after(EventReceiver event) : call(* com.bezirk.middleware.messages.EventSet.setEventReceiver(EventReceiver)) && target(event){
 		if (event instanceof LightEvent)
 			System.out.println("");
 	}

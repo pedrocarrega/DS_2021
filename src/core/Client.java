@@ -17,8 +17,8 @@ import i18n.Messages;
 
 public class Client {
 
-	private static LinkedHashMap<String, Consumer<String>> menu;
-	private static Contacts contacts;
+	public static LinkedHashMap<String, Consumer<String>> menu;
+	public static Contacts contacts;
 	private static Scanner sc;
 	private static ReminderManager reminders;
 

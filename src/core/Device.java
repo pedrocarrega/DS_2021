@@ -15,8 +15,9 @@ import events.AlertEvent;
 
 public class Device {
 	
-	private static LinkedHashMap<String, Consumer<String>> menu;
-	private static Scanner sc;
+	public static LinkedHashMap<String, Consumer<String>> menu;
+	public static Scanner sc;
+	public static Bezirk bezirk;
 	
 	public static void main(String[] args) {
 		
@@ -51,7 +52,7 @@ public class Device {
 	private static void inicializeBezirk() {
 		
 		BezirkMiddleware.initialize();
-		final Bezirk bezirk = BezirkMiddleware.registerZirk("Device Client Zirk");
+		bezirk = BezirkMiddleware.registerZirk("Device Client Zirk");
 		
 		List<Class<? extends Event>> listenEvents = new ArrayList<>();
 		listenEvents.add(AlertEvent.class);

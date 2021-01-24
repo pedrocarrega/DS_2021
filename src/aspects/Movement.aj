@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.util.function.Consumer;
 
 import com.bezirk.middleware.messages.Event;
+import com.bezirk.middleware.messages.EventSet.EventReceiver;
 
 import core.Client;
 import events.MovementEvent;
@@ -21,9 +22,8 @@ public aspect Movement {
 	private static String Client.movePatternLocation;
 	
 	
-	after(HashMap<String, Consumer<String>> menu): execution(* Client.initializeMenu()) && args(menu){
-
-		menu.put(I18N.getString(Messages.MOVEMENT_OPTION), (i) -> createPattern());
+	after(): execution(* core.Client.inicializeMenu()){
+		core.Client.menu.put(I18N.getString(Messages.MOVEMENT_OPTION), (i) -> createPattern());
 	}
 	
 	private String createPattern() {
@@ -53,7 +53,7 @@ public aspect Movement {
 		events.add(MovementEvent.class);
 	}
 	
-	after(Event event) : execution(void *.receiveEvent(..)) && target(event) {
+	after(EventReceiver event) : call(* com.bezirk.middleware.messages.EventSet.setEventReceiver(EventReceiver)) && target(event){
 		if (event instanceof MovementEvent) {
 			MovementEvent temp = (MovementEvent) event;
 			if(temp.getTime().isBefore(Client.movePatternStartTime) && temp.getTime().isAfter(Client.movePatternEndTime)) {

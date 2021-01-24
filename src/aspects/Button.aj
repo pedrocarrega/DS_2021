@@ -1,33 +1,29 @@
 package aspects;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
-import java.util.function.Consumer;
 
-import com.bezirk.middleware.messages.Event;
 import com.bezirk.middleware.Bezirk;
+import com.bezirk.middleware.messages.Event;
+import com.bezirk.middleware.messages.EventSet.EventReceiver;
 
+import core.Client;
+import core.Contacts;
 import events.ButtonEvent;
 import i18n.I18N;
 import i18n.Messages;
-import core.Device;
-import core.Client;
-import core.Contacts;
 
 public aspect Button {
 
 	private static String Client.emergencyContact;
-
-	after(HashMap<String, Consumer<String>> menu, Bezirk bezirk): execution(* Device.initializeMenu()) && args(menu, bezirk){
-
-		menu.put(I18N.getString(Messages.BUTTON_OPTION), (i) -> pressButton(bezirk));
+	
+	after(): execution(* core.Device.inicializeMenu()){
+		core.Device.menu.put(I18N.getString(Messages.BUTTON_OPTION), (i) -> pressButton(core.Device.bezirk));
 	}
-
-	after(HashMap<String, Consumer<String>> menu, Contacts contacts): execution(* Client.initializeMenu()) && args(menu, contacts){
-
-		menu.put(I18N.getString(Messages.ADD_EMERGENCY_CONTACT), (i) -> addEmergencyContact(contacts));
+	
+	after(): execution(* core.Client.inicializeMenu()){
+		core.Client.menu.put(I18N.getString(Messages.ADD_EMERGENCY_CONTACT), (i) -> addEmergencyContact(core.Client.contacts));
 	}
 
 	private String addEmergencyContact(Contacts contacts) {
@@ -59,7 +55,8 @@ public aspect Button {
 		events.add(ButtonEvent.class);
 	}
 
-	after(Event event) : execution(void *.receiveEvent(..)) && target(event) {
+	
+	after(EventReceiver event) : call(* com.bezirk.middleware.messages.EventSet.setEventReceiver(EventReceiver)) && target(event){
 		if (event instanceof ButtonEvent)
 			System.out.println(I18N.getString(Messages.BUTTON_ALERT) + LocalDateTime.now().toString());
 	}
