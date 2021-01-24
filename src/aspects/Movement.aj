@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.function.Consumer;
 
+import com.bezirk.middleware.Bezirk;
 import com.bezirk.middleware.messages.Event;
 import com.bezirk.middleware.messages.EventSet.EventReceiver;
 
@@ -24,6 +25,15 @@ public aspect Movement {
 	
 	after(): execution(* core.Client.inicializeMenu()){
 		core.Client.menu.put(I18N.getString(Messages.MOVEMENT_OPTION), (i) -> createPattern());
+	}
+
+	
+	after(Bezirk bezirk): execution(* core.Device.inicializeMenu()) && target(bezirk){
+		core.Client.menu.put(I18N.getString(Messages.MOVEMENT_SEND), (i) -> sendMovement(bezirk));
+	}
+	
+	private void sendMovement(Bezirk bezirk) {
+		bezirk.sendEvent(new MovementEvent(LocalTime.now()));
 	}
 	
 	private String createPattern() {

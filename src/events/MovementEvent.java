@@ -17,8 +17,8 @@ public class MovementEvent extends Event{
 		return time;
 	}
 
-	public MovementEvent(String time) {
-		this.time = LocalTime.parse(time);
+	public MovementEvent(LocalTime localTime) {
+		this.time = localTime;
 	}
 	
 	@Override
